@@ -57,10 +57,13 @@ class ProductItem extends StatelessWidget {
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text(
                   'Added item to Cart',
-                  textAlign: TextAlign.center,
                 ),
                 backgroundColor: Colors.black38,
                 duration: Duration(seconds: 2),
+                action: SnackBarAction(
+                  label: 'UNDO',
+                  onPressed: () {},
+                ),
               ));
             },
             color: Theme.of(context).accentColor,
