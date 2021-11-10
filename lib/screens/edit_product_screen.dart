@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../providers/products.dart';
 import '../providers/product.dart';
+import 'package:provider/provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -58,10 +59,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     _form.currentState.save();
-    print(_editedProduct.title);
-    print(_editedProduct.description);
-    print(_editedProduct.price);
-    print(_editedProduct.imageUrl);
+    Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -201,11 +200,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             !value.startsWith('https')) {
                           return 'Please enter a valid URL.';
                         }
-                        if (!value.endsWith('.png') &&
-                            !value.endsWith('.jpg') &&
-                            !value.endsWith('.jpeg')) {
-                          return 'Please enter a valid image URL.';
-                        }
+                        // if (!value.endsWith('.png') &&
+                        //     !value.endsWith('.jpg') &&
+                        //     !value.endsWith('.jpeg')) {
+                        //   return 'Please enter a valid image URL.';
+                        // }
                         return null;
                       },
                       onSaved: (value) {
